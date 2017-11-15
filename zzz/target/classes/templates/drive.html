@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Author" content=" ">
+		<title>任务</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/task.css">
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css">
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/style.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/upload.css" />
+		<script type="text/javascript" src="js/upload.js"></script>
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body>
+		<header id="header">
+			<div id="header_before"></div>
+			<div class="navbar">
+				<div id="navbar_before"></div>
+				<div class="nav_top">
+					<a href="task" class="navtext">
+						<i class="iconfont icon-danchuzimutubiao"></i>
+						<span>Subtitle Group!</span>
+					</a>
+				</div>
+				<div class="nav_text">
+					<span>任务系统</span>
+				</div>
+				<div class="subnav">
+					<h3>General</h3>
+					<ul class="nav side-menu">
+						<li><i class="iconfont icon-woderenwu1"></i>
+							<a href="task">我的任务</a>
+						</li>
+						<li ><i class="iconfont icon-heimingdan"></i>
+							<a href="project">项目</a>
+						</li>
+						<li class="active"><i class="iconfont icon-wangpan"></i>
+							<a href="upload">网盘系统</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<section>
+			<aside class="aside">
+				<div class="aside_left"><i id="aside_left" class="iconfont icon-liebiao" style="font-size: 24px;"></i></div>
+				<ul class="aside_right">
+					<li>
+						<div class="aside_right_mail">
+							<a><i class="iconfont icon-mail"></i></a><span>6</span>
+						</div>
+						<ul class="menu menu1 mail_list">
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a><img th:src="${path}" src="images/preview.jpg"><span th:text="${name}">快到碗里来</span></a>
+						<ul class="menu">
+							<li>
+								
+						<a href="javascript:;" class="file">修改头像
+														<form method="post" enctype="multipart/form-data"
+															name="formname1" id="formname1" action="/icon_save">
+															<input type="file" name="files" accept="" multiple
+																onchange="submitform()" style="position: absolute; right: 0;top: 0; width: 100%; height: 100%;opacity: 0; cursor: pointer;" />
+														</form>
+														</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<div class="search"><input type="text" id="search" name="搜索" placeholder="点击这里搜索.."><button>GO!</button></div>
+						<i class="iconfont icon-sousuo" id="sousuo"></i>
+						<label class="search_label">|</label>
+					</li>
+				</ul>
+			</aside>
+			<div class="main">
+				<div class="main_top">
+					<div class="main_top_left">
+						<a href="javascript:;"><i class="iconfont icon-wangpan"></i><span>网盘系统</span></a>
+					</div>
+				</div>
+				<div class="content">
+					<div class="task_list">
+						<div></div>
+						<div class="boxes martop0">
+							<div class="task_list_main">
+								<div class="task_list_item drive_list_item1">
+									<ul class="drive_list_item">
+										<li class="active"><a href="upload">个人网盘</a></li>
+										<li><a href="/share">公共网盘</a></li>
+									</ul>
+								</div>
+								<div class="task_item_wrapper">
+									<div id="container_main">
+										<div class="container_top" style="text-align: left;">
+											<div class="bor">
+												<span>
+													<a href="javascript:;" class="file" style="background: #2a3f54!important;
+    color: #fff;">选择文件
+														<form method="post" enctype="multipart/form-data"
+															name="form1" id="form1" action="/upload">
+															<input type="file" name="file" accept="" multiple
+																onchange="submitform1()">
+														</form>
+												</a>
+												</span> <span> <a href="javascript:;" class="file"
+													onclick="prom()">新建文件夹
+														<form method="post" enctype="multipart/form-data"
+															name="form4" action="/xj">
+															<input type="hidden" name="route" th:value="${route1}" />
+															<input type="hidden" name="wjname" value="" />
+														</form>
+												</a>
+												</span>
+											</div>
+										</div>
+										<div class="container_bottom">
+											<div class="container_bottom_top">
+												<a href="javascript:void(0);" id="fh">返回上一级
+													<form method="post" enctype="multipart/form-data" name="form2" id="form2" action="/fh">
+														<input type="submit" name="submit"> <input type="hidden" name="route" th:value="${route1}" />
+													</form>
+												</a>
+											</div>
+											<div>
+
+											</div>
+											<div class="container_bottom_body">
+												<table class="list-header">
+													<thead>
+														<tr>
+															<th>
+																<div class="checkbox">
+																	<input type='checkbox' id='checkbox1' name='check'>
+																	<label for='checkbox1'></label>
+																</div>
+															</th>
+															<th class="th_name">名称</th>
+															<th style="width: 15%;">修改日期</th>
+															<th>大小</th>
+															<th style="text-indent: 6px;">编辑</th>
+														</tr>
+													</thead>
+													<tbody id="list-container">
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div id="display_picture">
+			<div class="frame_main">
+				<div class=""></div>
+				<div class="picture">
+					<img src="" id="display_picture_img">
+				</div>
+				<h2 id="display_picture_h2">jsp网页制作</h2>
+				<div class="picture_close">
+					<button class="circle" onclick="circle()">
+			                <span></span>
+			           </button>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	updatedata();
+	</script>
+</html>

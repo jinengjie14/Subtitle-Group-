@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Author" content=" ">
+		<title>项目</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/task.css">
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="css/project.css">
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/style.js"></script>
+		<script type="text/javascript" src="js/project.js"></script>
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body>
+		<header id="header">
+			<div id="header_before"></div>
+			<div class="navbar">
+				<div id="navbar_before"></div>
+				<div class="nav_top">
+					<a href="task" class="navtext">
+						<i class="iconfont icon-danchuzimutubiao"></i>
+						<span>Subtitle Group!</span>
+					</a>
+				</div>
+				<div class="nav_text">
+					<span>任务系统</span>
+				</div>
+				<div class="subnav">
+					<h3>General</h3>
+					<ul class="nav side-menu">
+						<li><i class="iconfont icon-woderenwu1"></i>
+							<a href="task">我的任务</a>
+						</li>
+						<li class="active"><i class="iconfont icon-heimingdan"></i>
+							<a href="project">项目</a>
+						</li>
+						<li><i class="iconfont icon-wangpan"></i>
+							<a href="upload">网盘系统</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<section>
+			<aside class="aside">
+				<div class="aside_left"><i id="aside_left" class="iconfont icon-liebiao" style="font-size: 24px;"></i></div>
+				<ul class="aside_right">
+					<li>
+						<div class="aside_right_mail">
+							<a><i class="iconfont icon-mail"></i></a><span>6</span>
+						</div>
+						<ul class="menu menu1 mail_list">
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a><img th:src="${path}" src="images/preview.jpg"><span th:text="${name}">快到碗里来</span></a>
+						<ul class="menu">
+							<li>
+								
+						<a href="javascript:;" class="file">修改头像
+														<form method="post" enctype="multipart/form-data"
+															name="formname1" id="formname1" action="/icon_save">
+															<input type="file" name="files" accept="" multiple
+																onchange="submitform()" style="position: absolute; right: 0;top: 0; width: 100%; height: 100%;opacity: 0; cursor: pointer;" />
+														</form>
+														</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<div class="search"><input type="text" id="search" name="搜索" placeholder="点击这里搜索.."><button>GO!</button></div>
+						<i class="iconfont icon-sousuo" id="sousuo"></i>
+						<label class="search_label">|</label>
+					</li>
+				</ul>
+			</aside>
+
+
+
+			<div class="main">
+				<div class="main_top">
+					<div class="main_top_left">
+						<a href="javascript:;"><i class="iconfont icon-woderenwu1"></i><span>字幕组</span></a>
+					</div>
+				</div>
+				<div class="content">
+					<div class="task_list">
+						<div class="boxes">
+							<div class="task_list_main">
+								<div class="task_list_item"><span>项目细节</span></div>
+								<div class="task_item_wrapper">
+									<div class="task_item_wrapper_left width75">
+										<div class="stat_item">
+										<div class="stat_item_project stat_item_project_left"  id="circle-1">
+											<div class="stat_item_project_name">
+											<span>完成度</span>
+											<h2 class="circle-percentage"></h2>
+											<span>项目</span>
+											</div>
+										</div>
+										<div class="stat_item_project stat_item_project_left"  id="circle-2">
+											<div class="stat_item_project_name colorred">
+											<span>延期率</span>
+											<h2 class="circle-percentage"></h2>
+											<span>项目</span>
+											</div>
+										</div>
+									</div>
+									<div class="boxes">
+							<div class="task_list_main">
+								<div class="task_list_item"><i class="iconfont icon-liebiao"></i><span>完成的任务</span></div>
+								<div class="task_item_wrapper">
+									<div class="task_item_input" th:each="p:${task}">
+										<ul onselectstart="return false;">
+											<li>
+											   <span class="active" th:text="${p[1]}">安排与新客户会面</span>
+												<span class="active" >完成了</span>
+												<span class="active" th:text="${p[0].name} ">安排与新客户会面</span>
+											</li>
+				
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+								</div>
+								<div class="task_item_wrapper_left width25">
+										<div class="task_list_item x_title"><span>项目介绍</span></div>
+										<div class="panel_body" th:each="pro:${pro}">
+											<h3 th:text="${pro.pro_name}">字幕组</h3>
+											<p th:text="${pro.content}">居然能在人人上看到我上大学的东德小城市德绍,内心一顿悸动呀。当年(2000年)念书时,当地亚洲人只有几个越南难民和几个浙江青田人,我走在街上人们都和看到异形一</p>
+											<div class="project_title mbottom">
+												<span class="title">项目负责人</span><br />
+												<span><a href="#"><img src="images/preview.jpg"><span th:text="${pro.user.name}">快到碗里来</span></a></span>
+											</div>
+										</div>
+
+								
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</section>
+	</body>
+</html>

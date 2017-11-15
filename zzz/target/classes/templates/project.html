@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Author" content=" ">
+		<title>项目</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/task.css">
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="css/project.css">
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/style.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(".progress-span1").each(function(){
+					var html=$(this).html();
+					if(html=="NaN"){
+						progress($(this),0);
+					}else{
+						html*=100;
+						progress($(this),html);
+					}
+				})
+			});
+			function progress(parent,progress){
+			    var textContainer = parent;
+			    var parent1=parent.prev(".progress-bar").find('.progress-bar1');
+			    var i = 0;
+			    var time = 2000;
+			    var intervalTime 
+			    if(progress==0){
+			    	intervalTime=null;
+			    	parent1.width(0+"%");
+				    textContainer.text(0+"%");
+			    }else{
+			    intervalTime = Math.abs(time / progress);
+			    var timerID = setInterval(function () {
+				      i++;
+				      parent1.width(i+"%");
+				      textContainer.text(i+"%");
+				      if (i === progress) clearInterval(timerID);
+				    }, intervalTime);     
+			    }
+			         
+			}
+			function userid(a){
+				var pro_id=$(a).data("pro_id");
+				location.href="/project_details?pro_id="+pro_id;
+			}
+		</script>
+	</head>
+
+	<body>
+		<header id="header">
+			<div id="header_before"></div>
+			<div class="navbar">
+				<div id="navbar_before"></div>
+				<div class="nav_top">
+					<a href="task" class="navtext">
+						<i class="iconfont icon-danchuzimutubiao"></i>
+						<span>Subtitle Group!</span>
+					</a>
+				</div>
+				<div class="nav_text">
+					<span>任务系统</span>
+				</div>
+				<div class="subnav">
+					<h3>General</h3>
+					<ul class="nav side-menu">
+						<li><i class="iconfont icon-woderenwu1"></i>
+							<a href="task">我的任务</a>
+						</li>
+						<li class="active"><i class="iconfont icon-heimingdan"></i>
+							<a href="project">项目</a>
+						</li>
+						<li><i class="iconfont icon-wangpan"></i>
+							<a href="upload">网盘系统</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<section>
+			<aside class="aside">
+				<div class="aside_left"><i id="aside_left" class="iconfont icon-liebiao" style="font-size: 24px;"></i></div>
+				<ul class="aside_right">
+					<li>
+						<div class="aside_right_mail">
+							<a><i class="iconfont icon-mail"></i></a><span>6</span>
+						</div>
+						<ul class="menu menu1 mail_list">
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a><img th:src="${path}" src="images/preview.jpg"><span th:text="${name}">快到碗里来</span></a>
+						<ul class="menu">
+							<li>
+								
+						<a href="javascript:;" class="file">修改头像
+														<form method="post" enctype="multipart/form-data"
+															name="formname1" id="formname1" action="/icon_save">
+															<input type="file" name="files" accept="" multiple
+																onchange="submitform()" style="position: absolute; right: 0;top: 0; width: 100%; height: 100%;opacity: 0; cursor: pointer;" />
+														</form>
+														</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<div class="search"><input type="text" id="search" name="搜索" placeholder="点击这里搜索.."><button>GO!</button></div>
+						<i class="iconfont icon-sousuo" id="sousuo"></i>
+						<label class="search_label">|</label>
+					</li>
+				</ul>
+			</aside>
+			<div class="main">
+				<div class="main_top">
+					<div class="main_top_left">
+						<a href="javascript:;"><i class="iconfont icon-woderenwu1"></i><span>项目管理</span></a>
+					</div>
+					<div class="main_top_right">
+						<a onclick="javascript:newProject1()"><span>添加新任务</span></a>
+					</div>
+				</div>
+				<div class="content">
+					<div class="task_list">
+						<div class="boxes">
+							<div class="task_list_main">
+								<div class="task_list_item"><i class="iconfont icon-liebiao"></i><span>我创建的项目</span></div>
+								<div class="task_item_wrapper">
+							
+									<table class="table table-striped" >
+										<thead th:if="${pro2==null}">
+											<tr>
+												<td style="width: 11%">项目名</td>
+												<td>项目负责人</td>
+												<td>项目进展</td>
+												<td style="width: 10%">状态</td>
+												<td>编辑</td>
+											</tr>
+										</thead>
+											<thead th:if="${pro2!=null}" th:text="${pro2}">
+											<tr>
+												<td style="width: 11%">项目名</td>
+												<td>项目负责人</td>
+												<td>项目进展</td>
+												<td style="width: 10%">状态</td>
+												<td>编辑</td>
+											</tr>
+										</thead>
+										<tbody>		
+											<tr th:each="user:${user}">
+											
+												<td><a  th:text="${user.pro_name}" th:data-pro_id="${user.pro_id}">字幕组</a></td>
+												<td>
+													<img src="images/preview.jpg" />
+													<span th:text="${user.user.name}">快到碗里来</span>
+												</td>
+												<td>
+													<div class="progress-bar">
+														<div class="progress-bar1"></div>
+													</div>
+													<span th:text="${user.Completion}"  class="progress-span1">57%完成</span>
+												</td>
+												<td>进行中</td>
+												<td>
+													<a onclick="javascript:pro_edit(this)" th:id="${user.pro_id}" th:data-id="${user.user.user_id}" class="edit btn" ><i class="iconfont icon-brush_fill"></i><span>编辑</span></a>
+													<a onclick="javascript:pro_delete(this)" th:id="${user.pro_id}" th:data-id="${user.user.user_id}"  class="delect btn"><i class="iconfont icon-huishouzhan"></i><span>删除</span></a>
+												</td>
+											</tr>
+								
+											
+										</tbody>
+									</table>
+									</div>
+								</div>
+								</div>
+								
+								<div class="boxes">
+							<div class="task_list_main">
+								<div class="task_list_item"><i class="iconfont icon-liebiao"></i><span>我参与的项目</span></div>
+								<div class="task_item_wrapper">
+							
+									<table class="table table-striped" >
+										<thead  th:if="${pro1==null}">
+											<tr>
+							
+												<td style="width: 11%">项目名</td>
+												<td>项目负责人</td>
+												<td>项目进展</td>
+												<td style="width: 10%">状态</td>
+												<td>编辑</td>
+											</tr>
+										</thead>
+												<thead th:if="${pro1!=null}" th:text="${pro1}">
+											<tr>
+												<td style="width: 11%">项目名</td>
+												<td>项目负责人</td>
+												<td>项目进展</td>
+												<td style="width: 10%">状态</td>
+												<td>编辑</td>
+											</tr>
+										</thead>
+										<tbody>
+														<tr th:each="p:${pu}">
+											
+												<td><a th:text="${p.pro_name}" th:data-pro_id="${p.pro_id}">字幕组</a></td>
+												
+												<td>
+													<img src="images/preview.jpg" />
+													<span th:text="${p.user.name}">快到碗里来</span>
+												</td>
+												<td>
+												<div class="progress-bar">
+														<div class="progress-bar1"></div>
+													</div>
+													<span th:text="${p.Completion}"  class="progress-span1">57%完成</span>
+												</td>
+												<td>进行中</td>
+												<td>
+													<a onclick="javascript:pro_edit(this)"  th:id="${p.pro_id}" th:data-id="${p.user.user_id}" class="edit btn" ><i class="iconfont icon-brush_fill"></i><span>编辑</span></a>
+													<a onclick="javascript:pro_delete(this)" th:id="${p.pro_id}" th:data-id="${p.user.user_id}" class="delect btn"><i class="iconfont icon-huishouzhan"></i><span>删除</span></a>
+												</td>
+											</tr>
+												
+									
+											
+								
+											
+										</tbody>
+									</table>
+									</div>
+								</div>
+								</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="new-task new-project">
+		<div class="new-task-body" style="width: 600px;">
+			<div class="new_content"
+				style="height: 350px !important; min-height: 16px;">
+				<div class="new_content_top">
+					<div class="new_content_top_left">
+						<span>新建项目</span>
+					</div>
+						<form method="post" name="form1" id="form1" action="/pro_save">
+					<div class="add_project">
+						<div class="new_project">
+							<span>项目名称：</span><input type="text" name="pro_name" value=""
+								placeholder="新项目昵称.." />
+						</div>
+						<div class="new_project">
+							<span>项目描述：</span>
+							<textarea type="text" name="content" style="height: 90px;"
+								id="task_content" placeholder="简单描述下项目...">
+									</textarea>
+							<div>
+								<button class="active" onclick="saveProject1()">保存</button>
+								<button type="button" onclick="delectProject()">取消</button>
+								
+							</div>
+
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>

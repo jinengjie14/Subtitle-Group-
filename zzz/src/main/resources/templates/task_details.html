@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Author" content=" ">
+		<title>任务</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/task.css">
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css">
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/style.js"></script>
+		<style type="text/css"></style>
+	</head>
+
+	<body>
+		<header id="header">
+			<div id="header_before"></div>
+			<div class="navbar">
+				<div id="navbar_before"></div>
+				<div class="nav_top">
+					<a href="task" class="navtext">
+						<i class="iconfont icon-danchuzimutubiao"></i>
+						<span>Subtitle Group!</span>
+					</a>
+				</div>
+				<div class="nav_text">
+					<span>任务系统</span>
+				</div>
+				<div class="subnav">
+					<h3>General</h3>
+					<ul class="nav side-menu">
+						<li  class="active"><i class="iconfont icon-woderenwu1"></i>
+							<a href="task">我的任务</a>
+						</li>
+						<li><i class="iconfont icon-heimingdan"></i>
+							<a href="project">项目</a>
+						</li>
+						<li><i class="iconfont icon-wangpan"></i>
+							<a href="upload">网盘系统</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<section>
+			<aside class="aside">
+				<div class="aside_left"><i id="aside_left" class="iconfont icon-liebiao" style="font-size: 24px;"></i></div>
+				<ul class="aside_right">
+					<li>
+						<div class="aside_right_mail">
+							<a><i class="iconfont icon-mail"></i></a><span>6</span>
+						</div>
+						<ul class="menu menu1 mail_list">
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a><img th:src="${path}" src="images/preview.jpg"><span th:text="${name}">快到碗里来</span></a>
+						<ul class="menu">
+							<li>
+								
+						<a href="javascript:;" class="file">修改头像
+														<form method="post" enctype="multipart/form-data"
+															name="formname1" id="formname1" action="/icon_save">
+															<input type="file" name="files" accept="" multiple
+																onchange="submitform()" style="position: absolute; right: 0;top: 0; width: 100%; height: 100%;opacity: 0; cursor: pointer;" />
+														</form>
+														</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<div class="search"><input type="text" id="search" name="搜索" placeholder="点击这里搜索.."><button>GO!</button></div>
+						<i class="iconfont icon-sousuo" id="sousuo"></i>
+						<label class="search_label">|</label>
+					</li>
+				</ul>
+			</aside>
+
+			<div class="main">
+				
+		<div class="new-task new-task1">
+			<div class="new-task-body new-task-body1">
+				<div class="new_content">
+					<div class="new_content_top">
+						<div class="new_content_top_left">
+							<span th:id="${pro_id}" th:text="${pro_name}">未分配项目</span>
+							<a href="javascript:;" onclick="newProject()"><i class="iconfont icon-xiala"></i></a>
+						</div>
+						<div class="picture_close">
+							<button class="circle" onclick="taskCircle()">
+					            <span></span>
+					        </button>
+						</div>
+					</div>
+					<div class="new_content_body task_new">
+						<div class="text-name">
+							<input type="checkbox" name="sex" id="1" th:id="${details.task_id}" value="" class="radio" onchange="javascript:post(this)">
+							<label for="1" th:for="${details.task_id}"></label>
+							<div class="task_name_left">
+								<a class="active" th:text="${details.name}" onclick="dataTitle(this)">安排与新客户会面</a>
+								<div class="task_name_active">
+									<input type="text" name="name" id="task_name" th:value="${details.name}" value="安排与新客户" />
+									<button class="active" onclick="taskname_update(this)" th:data-id="${details.task_id}">保存</button>
+									<button onclick="dataCancel(this)">取消</button>
+								</div>
+							</div>
+							<div class="task_name_right">
+								<span>截止日期</span>
+								<a><input type="date" id="task_date" th:data-id="${details.task_id}" onchange="taskdate_update(this)" th:value="${details.bydate}" /></a>
+							</div>
+						</div>
+						<div class="text-content marginbom15">
+							<span class="text-content-describe" th:text="${details.content}" onclick="dataTitle(this)">我们会定期对 W3School 的 CSS 参考手册进行浏览器测试。CSS3 选择器在CSS 中,选择器是一种模式,用于选择需要添加样式的元素。"CSS" 列指示该属性是在哪个 CSS...</span>
+							<div class="task_name_active">
+								<textarea type="text" name="content" id="task_content" th:text="${details.content}" placeholder="点击添加描述...">我们会定期对 W3School 的 CSS 参考手册进行浏览器测试。CSS3 选择器在CSS 中,选择器是一种模式,用于选择需要添加样式的元素。"CSS" 列指示该属性是在哪个 CSS...
+									
+									</textarea>
+								<button class="active"  onclick="taskcontent_update(this)" th:data-id="${details.task_id}">保存</button>
+								<button onclick="dataCancel(this)">取消</button>
+							</div>
+						</div>
+						<div class="task_new_member">
+							<i class="iconfont icon-heimingdan"></i>
+							<h5>参与人员：</h5><span>成员</span>
+							<div class="task_new_content">
+								<div class="task_new_content_member">
+									<div class="task_new_content_member1">
+										<div class="task_new_content_name_member" th:each="man:${man}">
+					                 	<img th:src="${man.path}" src="images/preview.jpg" />  
+										</div>
+									</div>
+								</div>
+								<a href="javascript:;" onclick="leftMove()"><i class="iconfont icon-fanhui"></i></a>
+								<a href="javascript:;" onclick="rightMove()"><i class="iconfont icon-gengduo"></i></a>
+								<a href="javascript:;" onclick="dataMember()"><i class="iconfont icon-addition"></i></a>
+							</div>
+							<div class="add__name_member">
+								<div class="add__name_member_top">请选择成员：</div>
+						        <ul  th:each="user:${user}">
+				                  	<li  th:id="${user.user_id}" onclick="taskman_save(this)">
+				             	        <img th:src="${user.path}" src="images/preview.jpg" />
+								        <div class="add__name_title" th:text="${user.name}">yhn</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="text_name_comment task_new_member">
+							<i class="iconfont icon-heimingdan"></i>
+							<h5>评论</h5>
+							<div class="text_name_comment_content">
+								<div class="text_name_comment_member">
+									<ul th:each="comment:${comment}">
+								<li>
+												<span class="image"><img th:src="${comment[2]}" src="images/preview.jpg"></span>
+												<span><span th:text="${comment[1]}">快到碗里来</span><span th:text="${comment[0].date}" class="time">11点07分</span></span>
+												<span th:text="${comment[0].comment_content}" class="message">这个项目很重要还不快点做！！。。。。</span>
+											</li>
+									</ul>
+								</div>
+							</div>
+							<div class="text-footer">
+								<span> 创建于</span>
+								<span th:text="${details.date}"> </span>
+							</div>
+						</div>
+					</div>
+					<div class="add_footer_comment">
+						<span>
+							<img src="images/preview.jpg" />
+						</span>
+						<input type="text" value="" name="comment" placeholder="点击这里发布评论..." />
+						<button th:id="${details.task_id}" onclick="comment_save()">发送 </button>
+					</div>
+				</div>
+			</div>
+		</div>
+			</div>
+		</section>
+
+
+		<div class="new-task new-project">
+			<div class="new-task-body" style="width: 600px;">
+				<div class="new_content" style="height: 200px!important; min-height: 16px;">
+					<div class="new_content_top">
+						<div class="new_content_top_left">
+							<span>移动任务到</span>
+						</div>
+						<div class="add_project">
+							选择项目：
+							<select name="select" id="fruit" th:each="pro:${pro}">
+								<option value="">未分配项目</option>
+								<option th:text="${pro.name}" th:value="${pro.pro_id}"></option>
+							</select>
+							</br>
+							<button class="active" onclick="saveProject()">保存</button>
+							<button onclick="delectProject()">取消</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

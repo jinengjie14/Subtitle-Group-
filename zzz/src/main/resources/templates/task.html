@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Author" content=" ">
+		<title>任务</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/task.css">
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css">
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/style.js"></script>
+		<script type="text/javascript" src="js/task.js"></script>
+		<style type="text/css"></style>
+	</head>
+
+	<body>
+		<header id="header">
+			<div id="header_before"></div>
+			<div class="navbar">
+				<div id="navbar_before"></div>
+				<div class="nav_top">
+					<a href="task" class="navtext">
+						<i class="iconfont icon-danchuzimutubiao"></i>
+						<span>Subtitle Group!</span>
+					</a>
+				</div>
+				<div class="nav_text">
+					<span>任务系统</span>
+				</div>
+				<div class="subnav">
+					<h3>General</h3>
+					<ul class="nav side-menu">
+						<li class="active"><i class="iconfont icon-woderenwu1"></i>
+							<a href="task">我的任务</a>
+						</li>
+						<li><i class="iconfont icon-heimingdan"></i>
+							<a href="project">项目</a>
+						</li>
+						<li><i class="iconfont icon-wangpan"></i>
+							<a href="upload">网盘系统</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<section>
+			<aside class="aside">
+				<div class="aside_left"><i id="aside_left" class="iconfont icon-liebiao" style="font-size: 24px;"></i></div>
+				<ul class="aside_right">
+					<li>
+						<div class="aside_right_mail">
+							<a><i class="iconfont icon-mail"></i></a><span>6</span>
+						</div>
+						<ul class="menu menu1 mail_list">
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="image"><img src="images/preview.jpg"></span>
+									<span><span>快到碗里来</span><span class="time">11点07分</span></span>
+									<span class="message">这个项目很重要还不快点做！！。。。。</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a><img th:src="${path}" src="images/preview.jpg"><span th:text="${name}">快到碗里来</span></a>
+						<ul class="menu">
+							<li>
+								
+						<a href="javascript:;" class="file">修改头像
+														<form method="post" enctype="multipart/form-data"
+															name="formname1" id="formname1" action="/icon_save">
+															<input type="file" name="files" accept="" multiple
+																onchange="submitform()" style="position: absolute; right: 0;top: 0; width: 100%; height: 100%;opacity: 0; cursor: pointer;" />
+														</form>
+														</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<div class="search"><input type="text" id="search" name="搜索" placeholder="点击这里搜索.."><button>GO!</button></div>
+						<i class="iconfont icon-sousuo" id="sousuo"></i>
+						<label class="search_label">|</label>
+					</li>
+				</ul>
+			</aside>
+
+			<div class="main">
+				<div class="main_top">
+					<div class="main_top_left">
+						<a href="javascript:;"><i class="iconfont icon-woderenwu1"></i><span>我的任务</span></a>
+					</div>
+					<div class="main_top_right">
+						<a href="javascript:;"><span onclick="newProject1()">添加新任务</span></a>
+					</div>
+				</div>
+				<div class="content">
+					<div class="task_list">
+						<div class="boxes">
+							<div class="task_list_main">
+								<div class="task_list_item"><i class="iconfont icon-liebiao"></i><span>我的任务</span></div>
+								<div class="task_item_wrapper">
+									<span th:text="${task2}"></span>
+									<div class="task_item_input"  th:each="p:${pu}">
+										<ul onselectstart="return false;">
+											<li>
+													<input type="checkbox" name="sex" th:data-id="${p.task_id}" th:id="${p.task_id}" value=""  class="radio" onchange="javascript:post(this)">
+												<label for="a" th:for="${p.task_id}"><i></i></label>
+												<a onclick="javascript:task_details(this)" th:id="${p.task_id}"><span  class="active"  th:text="${p.name} ">安排与新客户会面</span></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="boxes">
+							<div class="task_list_main">
+								<div class="task_list_item"><i class="iconfont icon-liebiao"></i><span>我参与的任务</span></div>
+								<div class="task_item_wrapper">
+									<span th:text="${task1}"></span>
+									<div class="task_item_input"  th:each="task:${task}">
+										<ul onselectstart="return false;">
+										<li>
+													<input type="checkbox" name="sex" th:data-id="${task.task_id}" th:id="${task.task_id}" value=""  class="radio" onchange="javascript:post(this)">
+												<label for="a" th:for="${task.task_id}"><i></i></label>
+												<a onclick="javascript:task_details(this)" th:id="${task.task_id}"><span  class="active"  th:text="${task.name} ">安排与新客户会面</span></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="new-task new-project">
+		<div class="new-task-body" style="width: 600px;">
+			<div class="new_content"
+				style="height: 350px !important; min-height: 16px;">
+				<div class="new_content_top">
+					<div class="new_content_top_left">
+						<span>新建任务</span>
+					</div>
+					<div class="add_project">
+						<form method="post" name="form1" id="form1" action="/task_save">
+							<div class="task_name_right task_name_right_1">
+								<span>截止日期</span> <a style="background: #fff;"><input
+									type="date"  id="task_date" name="by_date" value="2017-11-17"
+									style="width: 18%; padding: 0px; font-size: 3px; text-indent: 0px; border: 0px; position: absolute; right: 25px; top: 0px;" /></a>
+							</div>
+							<div class="new_project">
+								<span>任务名称：</span><input type="text" name="name" value=""
+									placeholder="新任务名称.." />
+							</div>
+							<div class="new_project">
+								<span>任务描述：</span>
+								<textarea type="text" name="content" style="height: 90px;"
+									id="task_content" placeholder="简单描述下任务...">
+									</textarea>
+								<div>
+									<button class="active" onclick="saveProject1()" type="submit">保存</button>
+									<button type="button" onclick="delectProject()">取消</button>
+								</div>
+
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+
+</html>
